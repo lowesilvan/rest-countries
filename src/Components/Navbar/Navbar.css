@@ -1,0 +1,9 @@
+
+.Toolbar {
+justify-content: space-between;
+}
+
+.ToggleMode {
+    margin-right: 5px;
+    font-size: inherit;
+}
