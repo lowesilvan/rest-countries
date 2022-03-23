@@ -16,8 +16,8 @@ body {
   font-family: 'Nunito Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--Very-Light-Gray-Light-Mode-Background);
-  color: var(--Very-Dark-Blue-Light-Mode-Text);
+  background-color: var(--Very-Light-Gray-Light-Mode-Background, hsl(0, 0%, 98%));
+  color: var(--Very-Dark-Blue-Light-Mode-Text, hsl(200, 15%, 8%));
   font-size: 14px;
   overflow-y: scroll;
 }
