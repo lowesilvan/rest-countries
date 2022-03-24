@@ -1,24 +1,25 @@
 import React from 'react';
 import CountryList from '../country_list/CountryList';
-import FilterByRegion from '../Filter/FilterByRegion';
-import SearchCountry from '../Filter/SearchCountry';
-import { Container, Grid } from '@mui/material';
-import useFetch from '../FetchApi/FetchApi';
+import { Container } from '@mui/material';
 import { Typography } from '@mui/material';
+import Filter from '../Filter/Filter';
 
-const Home = () => {
-    const { data: country, isPending, error } = useFetch('https://restcountries.com/v2/all');
+const Home = (props) => {
+    const country = props.Country;
+    const error = props.error;
+    const isPending = props.Pend;
+    const searchCountry = props.searchItem;
+    const searchTerm = props.searchTerm;
+    const filterRegion = props.filterRegion;
+    const regionTerm = props.regionTerm;
 
     return (
         <main>
             <Container sx={{ py: 0 }} maxWidth="lg">
-                <Grid sx={{marginTop: '100px', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-                    <SearchCountry />
-                    <FilterByRegion Country={country}/>
-                </Grid>
+                <Filter Country={country} searchCountry={searchCountry} filterRegion={filterRegion} regionTerm={regionTerm}/>
                 {error && <Typography align="center" variant="h4" component="h3" color="inherit" sx={{ marginTop: '100px' }}>{error}</Typography>}
                 {isPending && <Typography align="center" variant="h4" component="h3" color="inherit" sx= {{marginTop: '100px'}}>Loading...</Typography>}
-                {country && <CountryList Country={country} error={error} Pend={isPending}/>}
+                {country && <CountryList Country={country} searchTerm={searchTerm} regionTerm={regionTerm}/>}
             </Container>
         </main>
     )

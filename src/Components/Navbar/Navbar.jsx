@@ -30,7 +30,7 @@ export default function ElevateAppBar(props) {
                 <AppBar color="inherit">
                     <Toolbar style={{justifyContent: 'space-between'}}>
                         <Typography variant="h6" component="div" color="inherit">
-                            Scroll to Elevate App Bar
+                            Where in the world?
                         </Typography>
                         <Button variant="text" color="inherit">
                             <svg stroke="currentColor" fill="currentColor" strokeWidth="0" style={{marginRight: '7px'}}
