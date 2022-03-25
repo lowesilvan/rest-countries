@@ -11,7 +11,7 @@ const CountryList = (props) => {
     const countries = props.Country;
     const searchTerm = props.searchTerm;
     const regionValue = props.regionTerm;
-    
+  
     return (
         <Grid container spacing={{ xs: 6, md: 5 }} sx={{marginTop: '0'}}>
                 {countries.filter((country) => {
@@ -35,7 +35,7 @@ const CountryList = (props) => {
                     return null
 
                 }).map((country) => {
-                    const { numericCode, name, population, region, capital, flag, } = country;
+                    const { numericCode, name, population, region, capital, flag} = country;
 
                     return (
                         <Grid item key={numericCode} xs={12} sm={6} md={4} lg={3} xl={2}>
@@ -48,6 +48,7 @@ const CountryList = (props) => {
                                         image={flag}
                                         alt={name}
                                         height="190"
+                                        sx={{minWidth: {xs: 400}}}
                                     />
                                     <CardContent>
                                         <Typography gutterBottom variant="h6" component="h1">

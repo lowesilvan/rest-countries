@@ -6,11 +6,13 @@ import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Home/Home";
 import CountryDetails from "./Components/country_details/CountryDetails";
 import NotFound from "./Components/404 Page/NotFound";
-import useFetch from '../src/Components/FetchApi/FetchApi';
 import CssBaseline from '@mui/material/CssBaseline';
+import FetchApi from "../src/Components/FetchApi/FetchApi";
+import { useParams } from "react-router";
+import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 
 function App() {
-  const { data: country, isPending, error } = useFetch('https://restcountries.com/v2/all');
+  const { data: country, isPending, error } = FetchApi('https://restcountries.com/v2/all');
   const [searchTerm, setSearchTerm] = useState("");
   const [filterRegion, setFilterRegion] = useState("");
 
@@ -39,7 +41,7 @@ function App() {
                                       />
             }/>
             <Route>
-              <Route path="/countries/:name" element={<CountryDetails />} />
+              <Route path="/countries/:slug" element={<CountryDetails />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
