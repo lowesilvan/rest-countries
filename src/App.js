@@ -8,13 +8,26 @@ import CountryDetails from "./Components/country_details/CountryDetails";
 import NotFound from "./Components/404 Page/NotFound";
 import CssBaseline from '@mui/material/CssBaseline';
 import FetchApi from "../src/Components/FetchApi/FetchApi";
-import { useParams } from "react-router";
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Container } from "@mui/material";
+
+const light = {
+  palette: {
+    mode: "light",
+  },
+};
+
+const dark = {
+  palette: {
+    mode: "dark",
+  },
+};
 
 function App() {
   const { data: country, isPending, error } = FetchApi('https://restcountries.com/v2/all');
   const [searchTerm, setSearchTerm] = useState("");
   const [filterRegion, setFilterRegion] = useState("");
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
   const searchCountry = (e) => {
     setSearchTerm(e.target.value);
@@ -23,30 +36,39 @@ function App() {
   const filterByRegion = (e) => {
     setFilterRegion(e.target.value);
   }
+
+  const changeTheme = () => {
+    setIsDarkTheme(!isDarkTheme);
+  };
+  
   return (
     <Router>
-      <div className="App">
+      <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
         <CssBaseline />
-        <Navbar />
-        <div className="content">
-          <Routes>
-            <Route exact path="/" element={<Home 
-                                            Country={country} 
-                                            Pend={isPending} 
-                                            error={error} 
-                                            searchItem={searchCountry}
-                                            searchTerm={searchTerm}
-                                            filterRegion = {filterByRegion}
-                                            regionTerm = {filterRegion}
-                                      />
-            }/>
-            <Route>
-              <Route path="/countries/:slug" element={<CountryDetails />} />
-              <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </div>
-      </div>
+        <Container>
+          <div className="App">
+            <Navbar changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
+            <div className="content">
+              <Routes>
+                <Route exact path="/" element={<Home
+                  Country={country}
+                  Pend={isPending}
+                  error={error}
+                  searchItem={searchCountry}
+                  searchTerm={searchTerm}
+                  filterRegion={filterByRegion}
+                  regionTerm={filterRegion}
+                />
+                } />
+                <Route>
+                  <Route path="/countries/:slug" element={<CountryDetails />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
+              </Routes>
+            </div>
+          </div>
+        </Container>
+      </ThemeProvider>
     </Router>
   );
 }

@@ -16,7 +16,7 @@ const Filter = (props) => {
                 sx={{marginTop: '80px', justifyContent: 'space-between', paddingBottom: '50px'}}
                 spacing={{ xs: 4 }}
             >
-                <FormControl>
+                <FormControl sx={{ borderColor: '#000000' }}>
                     <TextField 
                         onChange={searchCountry}
                         placeholder="Search for a country..."
