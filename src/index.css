@@ -16,6 +16,11 @@ body {
   font-family: 'Nunito Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 14px;
   overflow-y: scroll;
+  background-color: hsl(0, 0%, 98%);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

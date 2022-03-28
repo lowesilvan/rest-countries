@@ -1,8 +1,7 @@
 import React from 'react';
-import IconButton from "@material-ui/core/IconButton";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import { Stack, TextField, Box, Select, FormControl, MenuItem, InputLabel} from '@mui/material';
+import { Stack, TextField, Box, FormControl, InputLabel, NativeSelect} from '@mui/material';
 
 
 const Filter = (props) => {
@@ -13,10 +12,10 @@ const Filter = (props) => {
         <>
             <Stack
                 direction={{ xs: 'column', sm: 'row' }}
-                sx={{marginTop: '80px', justifyContent: 'space-between', paddingBottom: '50px'}}
+                sx={{marginTop: '50px', justifyContent: 'space-between', paddingBottom: '50px', paddingTop: '50px'}}
                 spacing={{ xs: 4 }}
             >
-                <FormControl sx={{ borderColor: '#000000' }}>
+                <FormControl variant="standard">
                     <TextField 
                         onChange={searchCountry}
                         placeholder="Search for a country..."
@@ -28,32 +27,37 @@ const Filter = (props) => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                    <IconButton>
-                                        <SearchIcon />
-                                    </IconButton>
+                                        <SearchIcon color="inherit" />
                                 </InputAdornment>
                             )
                         }}
                     />
                 </FormControl>
-                <Box sx={{ minWidth: 200}}>
-                    <FormControl variant="standard" fullWidth>
-                        <InputLabel sx={{ fontSize: '14px' }}>Filter By Region</InputLabel>
-                        <Select
-                            value={regionValue}
-                            defaultValue={""}
+                <Box sx={{ minWidth: 200, position: 'relative', color: 'inherit'}}>
+                    <FormControl fullWidth variant="standard">
+                        <InputLabel variant="standard" htmlFor="uncontrolled-native">
+                            Filter By Region
+                        </InputLabel>
+                        <NativeSelect
                             label="Filter By Region"
+                            defaultValue={""}
+                            value={regionValue}
                             onChange={filterByRegion}
-                            sx={{ padding: '3px', flexWrap: 'wrap'}}
+                            variant="standard"
+                            inputProps={{
+                                name: 'Filter By Region',
+                                id: 'uncontrolled-native'
+                            }}
+                            sx={{ fontSize: '15px'}}
                         >
-                                <MenuItem value={""}>All Regions</MenuItem>
-                                <MenuItem value={"Africa"}>Africa</MenuItem>
-                                <MenuItem value={"Americas"}>Americas</MenuItem>
-                                <MenuItem value={"Asia"}>Asia</MenuItem>
-                                <MenuItem value={"Europe"}>Europe</MenuItem>
-                                <MenuItem value={"Oceania"}>Oceania</MenuItem>
-                                <MenuItem value={"Polar"}>Polar</MenuItem>
-                        </Select>
+                            <option value={""}></option>
+                            <option value={"Africa"} sx={{padding: 10}}>Africa</option>
+                            <option value={"Americas"}>Americas</option>
+                            <option value={"Asia"}>Asia</option>
+                            <option value={"Europe"}>Europe</option>
+                            <option value={"Oceania"}>Oceania</option>
+                            <option value={"Polar"}>Polar</option>
+                        </NativeSelect>
                     </FormControl>
                 </Box>
             </Stack>

@@ -41,27 +41,26 @@ const CountryList = (props) => {
                         <Grid item key={numericCode} xs={12} sm={6} md={4} lg={3} xl={2}>
                             <CardActionArea component={RouterLink} to={`/countries/${name}`}>
                                 <Card
-                                    sx={{ height: 'auto', display: 'flex', flexDirection: 'column', marginTop: '0', maxWidth: 350 }}
+                                    sx={{ width: { xs: 320, md: 270 }, height: '340px', display: 'flex', flexDirection: 'column', margin: 'auto'}}
                                 >
                                     <CardMedia
                                         component="img"
                                         image={flag}
                                         alt={name}
-                                        height="190"
-                                        sx={{minWidth: {xs: 400}}}
+                                        sx={{margin: 0, maxInlineSize: '100%', blockSize: 'auto', height: '200px'}}
                                     />
                                     <CardContent>
-                                        <Typography gutterBottom variant="h6" component="h1">
+                                        <Typography gutterBottom variant="h5" component="h1">
                                             {name}
                                         </Typography>
                                         <Typography>
-                                            Population: {population}
+                                            <strong>Population:  </strong> {new Intl.NumberFormat().format(population)}
                                         </Typography>
                                         <Typography>
-                                            Region: {region}
+                                            <strong>Region:  </strong>  {region}
                                         </Typography>
                                         <Typography>
-                                            Capital: {capital}
+                                            <strong>Capital:  </strong>  {capital}
                                         </Typography>
                                     </CardContent>
                                 </Card>

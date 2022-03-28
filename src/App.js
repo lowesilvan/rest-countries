@@ -11,15 +11,22 @@ import FetchApi from "../src/Components/FetchApi/FetchApi";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Container } from "@mui/material";
 
+const getDesignTokens = (mode) => ({
+  palette: {
+    mode,
+    ...(mode === 'dark' && {
+      background: {
+        default: 'hsl(207, 26%, 17%)',
+        paper: 'hsl(207, 26%, 17%)',
+      },
+    }),
+  },
+});
+
+
 const light = {
   palette: {
     mode: "light",
-  },
-};
-
-const dark = {
-  palette: {
-    mode: "dark",
   },
 };
 
@@ -43,23 +50,24 @@ function App() {
   
   return (
     <Router>
-      <ThemeProvider theme={isDarkTheme ? createTheme(dark) : createTheme(light)}>
+      <ThemeProvider theme={isDarkTheme ? createTheme(getDesignTokens('dark')) : createTheme(light)}>
         <CssBaseline />
-        <Container>
+        <Container maxWidth="xl" sx={{ background: isDarkTheme? '' : 'hsl(0, 0%, 98%)' }}>
           <div className="App">
             <Navbar changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
             <div className="content">
               <Routes>
-                <Route exact path="/" element={<Home
-                  Country={country}
-                  Pend={isPending}
-                  error={error}
-                  searchItem={searchCountry}
-                  searchTerm={searchTerm}
-                  filterRegion={filterByRegion}
-                  regionTerm={filterRegion}
+                <Route exact path="/" 
+                  element={<Home
+                    Country={country}
+                    Pend={isPending}
+                    error={error}
+                    searchItem={searchCountry}
+                    searchTerm={searchTerm}
+                    filterRegion={filterByRegion}
+                    regionTerm={filterRegion}
+                  />} 
                 />
-                } />
                 <Route>
                   <Route path="/countries/:slug" element={<CountryDetails />} />
                   <Route path="*" element={<NotFound />} />
