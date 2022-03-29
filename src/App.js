@@ -65,15 +65,16 @@ function App() {
   };
   
   return (
-    <Router>
+    
       <ThemeProvider theme={isDarkTheme ? createTheme(getDesignTokens('dark')) : createTheme(light)}>
         <CssBaseline />
         <Container maxWidth="xl" sx={{ background: isDarkTheme ? '' : 'hsl(0, 0%, 98%)' }}>
           <div className="App">
             <Navbar changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
             <div className="content">
+            <Router>
               <Routes>
-                <Route path="/" 
+                <Route exact path="/" 
                   element={<Home
                     Country={country}
                     Pend={isPending}
@@ -85,16 +86,14 @@ function App() {
                     Enter={handleEnter}
                   />} 
                 />
-                <Route>
-                  <Route path="/countries/:slug" element={<CountryDetails />} Country={country}/>
-                  <Route path="*" element={<NotFound />} />
-                </Route>
+                <Route path="/countries/:slug" element={<CountryDetails />} Country={country}/>
+                <Route path="*" element={<NotFound />} />
               </Routes>
+            </Router>
             </div>
           </div>
         </Container>
       </ThemeProvider>
-    </Router>
   );
 }
 

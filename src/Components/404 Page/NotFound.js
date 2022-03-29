@@ -1,33 +1,31 @@
 import React from 'react'
 import './NotFound.css'
 import { Grid, Button, Box } from '@material-ui/core'
-import { useNavigate } from 'react-router'
 import { Container } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const NotFound = () => {
-    const Navigate = useNavigate()
     return (
         <Container maxWidth="lg" className="main">
             <div >
                 <Grid item xs={12} sx={{margin: '0 auto', alignItems: 'center'}}>
-                    <Button
-                        variant="outlined"
-                        color="inherit"
-                        onClick={() => {
-                            Navigate('/home')
-                        }}
-                        size="small"
-                    >
-                        <Box sx={{ padding: '5px', alignItems: 'center' }}>
-                            <svg style={{ marginTop: 'auto', marginRight: '7px', marginLeft: '0', alignItems: 'center', position: 'relative' }}
-                                stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24"
-                                strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em"
-                                xmlns="http://www.w3.org/2000/svg"><line x1="28" y1="12" x2="5" y2="12"></line>
-                                <polyline points="12 19 5 12 12 5"></polyline>
-                            </svg>
-                            Go Home
-                        </Box>
-                    </Button>
+                    <Link to="/">
+                        <Button
+                            variant="outlined"
+                            color="inherit"
+                            size="small"
+                        >
+                            <Box sx={{ padding: '5px', alignItems: 'center' }}>
+                                <svg style={{ marginTop: 'auto', marginRight: '7px', marginLeft: '0', alignItems: 'center', position: 'relative' }}
+                                    stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24"
+                                    strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em"
+                                    xmlns="http://www.w3.org/2000/svg"><line x1="28" y1="12" x2="5" y2="12"></line>
+                                    <polyline points="12 19 5 12 12 5"></polyline>
+                                </svg>
+                                Go Home
+                            </Box>
+                        </Button>
+                    </Link>
                 </Grid>
             </div>
             <div className="main2">

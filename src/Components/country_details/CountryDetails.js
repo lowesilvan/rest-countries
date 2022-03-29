@@ -51,7 +51,7 @@ const CountryDetails = (props) => {
                                         />
                                         <CardContent>
                                         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, ml: {lg: 7} }} spacing={3}>
-                                                <CardContent spacing={3}>
+                                                <CardContent spacing={3} sx={{ml: 0}}>
                                                     <Typography gutterBottom variant="h3" component="h2" sx={{fontSize: {xs: '32px'}, fontWeight: 700}}>{name}</Typography>
                                                     <Typography variant="paragraph" component="div"><strong>Native Name:  </strong>{nativeName}</Typography>
                                                     <Typography variant="paragraph" component="div"><strong>Population:  </strong>{new Intl.NumberFormat().format(population)}</Typography>
@@ -60,7 +60,7 @@ const CountryDetails = (props) => {
                                                     {capital && <Typography variant="paragraph" component="div"><strong>Capital:  </strong>{capital}</Typography>}
                                                     {!capital && <Typography variant="paragraph" component="div"><strong>Capital:  </strong>None</Typography>}
                                                 </CardContent>
-                                            <CardContent sx={{ margin: 'auto', ml: {xs: 0}}}>
+                                            <CardContent sx={{ margin: 'auto', ml: 0}}>
                                                     <Typography variant="paragraph" component="div"><strong>Top Level Domain:  </strong>{topLevelDomain} </Typography>
                                                     <Typography variant="paragraph" component="div"><strong>Currencies:  </strong>{currencies.map((m, key) => {
                                                             return (
