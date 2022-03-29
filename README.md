@@ -4,8 +4,8 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 ## Links 🔗
 
-- Solution URL: [Repository](https://github.com/lowesilvan/REST-Countries-API-with-color-theme-switcher-Challenge)
-- Live Site URL: [GitHub Pages](https://lowesilvan.github.io/REST-Countries-API-with-color-theme-switcher-Challenge/)
+- Solution URL: [Repository](https://github.com/lowesilvan/rest-countries)
+- Live Site URL: [GitHub Pages](https://lowesilvan.github.io/rest-countries/)
 
 ## The challenge 💻
 
@@ -41,6 +41,6 @@ Users should be able to:
 ### More about me
 
 - Frontend Mentor - [@lowesilvan](https://www.frontendmentor.io/profile/lowesilvan)
-- Twitter - [@dt_lowe](https://www.twitter.com/ashiqfury)
+- LinkedIn - [@dt_lowe](https://www.linkedin.com/in/lowesilvan/)
 
 ```
