@@ -41,7 +41,7 @@ const CountryList = (props) => {
                         <Grid item key={numericCode} xs={12} sm={6} md={4} lg={3} xl={2}>
                             <CardActionArea component={RouterLink} to={`/countries/${name}`}>
                                 <Card
-                                    sx={{ width: { xs: 320, md: 270 }, height: '340px', display: 'flex', flexDirection: 'column', margin: 'auto'}}
+                                    sx={{ width: { xs: 320, md: 265 }, height: '340px', display: 'flex', flexDirection: 'column', margin: 'auto'}}
                                 >
                                     <CardMedia
                                         component="img"

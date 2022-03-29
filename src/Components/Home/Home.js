@@ -3,6 +3,7 @@ import CountryList from '../country_list/CountryList';
 import { Container } from '@mui/material';
 import { Typography } from '@mui/material';
 import Filter from '../Filter/Filter';
+import LoadingSpin from "react-loading-spin";
 
 const Home = (props) => {
     const country = props.Country;
@@ -18,7 +19,18 @@ const Home = (props) => {
             <Container sx={{ py: 0 }} maxWidth="xl">
                 <Filter Country={country} searchCountry={searchCountry} filterRegion={filterRegion} regionTerm={regionTerm}/>
                 {error && <Typography align="center" variant="h4" component="h3" color="inherit" sx={{ marginTop: '100px' }}>{error}</Typography>}
-                {isPending && <Typography align="center" variant="h4" component="h3" color="inherit" sx= {{marginTop: '100px'}}>Loading...</Typography>}
+                {isPending && 
+                    <Typography align="center" variant="h4" component="h3" color="inherit" sx={{ marginTop: '100px' }}><LoadingSpin 
+                        duration="2s"
+                        width="10px"
+                        timingFunction="ease-in-out"
+                        direction="normal"
+                        size="100px"
+                        primaryColor="inherit"
+                        secondaryColor="hsl(209, 23%, 22%)"
+                        numberOfRotationsInAnimation={3}
+                    />
+                    </Typography>}
                 {country && <CountryList Country={country} searchTerm={searchTerm} regionTerm={regionTerm}/>}
             </Container>
         </main>

@@ -14,7 +14,7 @@ const NotFound = () => {
                         variant="outlined"
                         color="inherit"
                         onClick={() => {
-                            Navigate('/')
+                            Navigate('/home')
                         }}
                         size="small"
                     >

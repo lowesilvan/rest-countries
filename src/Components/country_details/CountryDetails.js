@@ -4,7 +4,7 @@ import FetchApi from '../../Components/FetchApi/FetchApi'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 
-const CountryDetails = () => {
+const CountryDetails = (props) => {
     const { slug } = useParams()
     const { data: country, isPending, error } = FetchApi(`https://restcountries.com/v2/name/${slug}`);
 
@@ -13,7 +13,7 @@ const CountryDetails = () => {
             <Container maxWidth="lg" sx={{ paddingTop: '80px'}}>
                 <Grid container spacing={6}>
                     <Grid item xs={12}>
-                        <Link to="/">
+                        <Link to="/home">
                             <Button
                                 variant="conatined"
                                 color="inherit"
@@ -36,13 +36,13 @@ const CountryDetails = () => {
                     {error && <Typography align="center" variant="h4" component="h3" color="inherit" sx={{ marginTop: '100px' }}>{error}</Typography>}
                     { country && <Grid component="main" xs={12} item>
                         {country.map((c) => {
-                            const { numericCode, flag, name,
+                            const { flag, name,
                                 nativeName, population, region,
                                 subregion, capital, topLevelDomain,
-                                currencies, languages, borders } = c
+                                currencies, languages, borders, alpha3Code } = c
                             
                             return (
-                                <Card key={numericCode} sx={{ display: 'flex', flexDirection: {xs: 'column', lg: 'row'}, height: 'auto'}} spacing={{xs: 5, lg: 2}}>
+                                <Card key={alpha3Code} sx={{ display: 'flex', flexDirection: {xs: 'column', lg: 'row'}, height: 'auto'}} spacing={{xs: 5, lg: 2}}>
                                         <CardMedia 
                                             component="img"
                                             sx={{ margin: 0, maxInlineSize: '100%', blockSize: 'auto', width: 500}}
@@ -60,7 +60,7 @@ const CountryDetails = () => {
                                                     {capital && <Typography variant="paragraph" component="div"><strong>Capital:  </strong>{capital}</Typography>}
                                                     {!capital && <Typography variant="paragraph" component="div"><strong>Capital:  </strong>None</Typography>}
                                                 </CardContent>
-                                                <CardContent sx={{ margin: 'auto', }}>
+                                            <CardContent sx={{ margin: 'auto', ml: {xs: 0}}}>
                                                     <Typography variant="paragraph" component="div"><strong>Top Level Domain:  </strong>{topLevelDomain} </Typography>
                                                     <Typography variant="paragraph" component="div"><strong>Currencies:  </strong>{currencies.map((m, key) => {
                                                             return (
@@ -74,7 +74,7 @@ const CountryDetails = () => {
                                                         })}</Typography>
                                                 </CardContent>
                                             </Box>
-                                            <CardContent sx={{ marginTop: { xs: 'auto' }, display: {xs: 'flex'} }}>
+                                            <CardContent sx={{ marginTop: { xs: 'auto' }, display: {xs: 'flex'}, ml: 'auto', alignItems: 'center'}}>
                                             <Typography variant="Paragraph" component="div" sx={{ flexDirection: { xs: 'column', lg: 'row' }, ml: {lg: 7}  }}><strong>Border Countries:  </strong>
                                                     {borders && borders.map((b, key) => {
                                                         const smallBorder = b.toLowerCase()

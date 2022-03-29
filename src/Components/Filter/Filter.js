@@ -1,7 +1,7 @@
 import React from 'react';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SearchIcon from "@material-ui/icons/Search";
-import { Stack, TextField, Box, FormControl, InputLabel, NativeSelect} from '@mui/material';
+import { Stack, TextField, FormControl, MenuItem } from '@mui/material';
 
 
 const Filter = (props) => {
@@ -12,14 +12,14 @@ const Filter = (props) => {
         <>
             <Stack
                 direction={{ xs: 'column', sm: 'row' }}
-                sx={{marginTop: '50px', justifyContent: 'space-between', paddingBottom: '50px', paddingTop: '50px'}}
+                sx={{ marginTop: '50px', justifyContent: 'space-between', paddingBottom: '50px', paddingTop: '50px', alignItems: 'center' }}
                 spacing={{ xs: 4 }}
             >
-                <FormControl variant="standard">
-                    <TextField 
+                <FormControl variant="standard" fullWidth sx={{ maxWidth: { md: 400 } }}>
+                    <TextField
                         onChange={searchCountry}
                         placeholder="Search for a country..."
-                        size="small"
+                        size="medium"
                         margin="dense"
                         fullWidth
                         type="text"
@@ -27,39 +27,30 @@ const Filter = (props) => {
                         InputProps={{
                             startAdornment: (
                                 <InputAdornment position="start">
-                                        <SearchIcon color="inherit" />
+                                    <SearchIcon color="inherit" />
                                 </InputAdornment>
                             )
                         }}
                     />
                 </FormControl>
-                <Box sx={{ minWidth: 200, position: 'relative', color: 'inherit'}}>
-                    <FormControl fullWidth variant="standard">
-                        <InputLabel variant="standard" htmlFor="uncontrolled-native">
-                            Filter By Region
-                        </InputLabel>
-                        <NativeSelect
-                            label="Filter By Region"
-                            defaultValue={""}
-                            value={regionValue}
-                            onChange={filterByRegion}
-                            variant="standard"
-                            inputProps={{
-                                name: 'Filter By Region',
-                                id: 'uncontrolled-native'
-                            }}
-                            sx={{ fontSize: '15px'}}
-                        >
-                            <option value={""}></option>
-                            <option value={"Africa"} sx={{padding: 10}}>Africa</option>
-                            <option value={"Americas"}>Americas</option>
-                            <option value={"Asia"}>Asia</option>
-                            <option value={"Europe"}>Europe</option>
-                            <option value={"Oceania"}>Oceania</option>
-                            <option value={"Polar"}>Polar</option>
-                        </NativeSelect>
-                    </FormControl>
-                </Box>
+                <FormControl fullWidth variant="standard" sx={{maxWidth: {md: 220}}}>
+                    <TextField
+                        select
+                        label="Filter By Region"
+                        defaultValue={""}
+                        value={regionValue}
+                        onChange={filterByRegion}
+                        fullWidth
+                    >
+                        <MenuItem value={""}></MenuItem>
+                        <MenuItem value={"Africa"}>Africa</MenuItem>
+                        <MenuItem value={"Americas"}>Americas</MenuItem>
+                        <MenuItem value={"Asia"}>Asia</MenuItem>
+                        <MenuItem value={"Europe"}>Europe</MenuItem>
+                        <MenuItem value={"Oceania"}>Oceania</MenuItem>
+                        <MenuItem value={"Polar"}>Polar</MenuItem>
+                    </TextField>
+                </FormControl>
             </Stack>
         </>
     )
