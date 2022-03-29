@@ -1,8 +1,9 @@
 {
-  "homepage": "http://lowesilvan.github.io/REST-Countries-API-with-color-theme-switcher-Challenge",
   "name": "rest-countries",
+  "description": "A challenge to create a web application with rest countries API using ReactJS",
   "version": "0.1.0", 
   "private": true,
+  "homepage": "http://lowesilvan.github.io/REST-Countries-API-with-color-theme-switcher-Challenge",
   "dependencies": {
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",

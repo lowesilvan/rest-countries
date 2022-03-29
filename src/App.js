@@ -73,7 +73,7 @@ function App() {
             <Navbar changeTheme={changeTheme} isDarkTheme={isDarkTheme}/>
             <div className="content">
               <Routes>
-                <Route path="/home" 
+                <Route path="/" 
                   element={<Home
                     Country={country}
                     Pend={isPending}
