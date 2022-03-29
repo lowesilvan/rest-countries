@@ -10,6 +10,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import FetchApi from "../src/Components/FetchApi/FetchApi";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Container } from "@mui/material";
+import { useEffect } from "react";
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -40,6 +41,21 @@ function App() {
     setSearchTerm(e.target.value);
   }
 
+  const handleEnter = (e) => {
+    let { key } = e;
+    if (key === 'Enter') {
+      searchCountry();
+    }
+  };
+
+  useEffect(() => {
+    if (searchTerm !== '') {
+      const timeout = setTimeout(() => searchCountry(), 5000);
+      return () => clearTimeout(timeout);
+    } else
+    return null
+  }, [searchTerm]);
+
   const filterByRegion = (e) => {
     setFilterRegion(e.target.value);
   }
@@ -66,6 +82,7 @@ function App() {
                     searchTerm={searchTerm}
                     filterRegion={filterByRegion}
                     regionTerm={filterRegion}
+                    Enter={handleEnter}
                   />} 
                 />
                 <Route>

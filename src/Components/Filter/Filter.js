@@ -8,6 +8,7 @@ const Filter = (props) => {
     const searchCountry = props.searchCountry;
     const filterByRegion = props.filterRegion;
     const regionValue = props.regionTerm;
+    const handleEnter = props.Enter;
     return (
         <>
             <Stack
@@ -18,6 +19,7 @@ const Filter = (props) => {
                 <FormControl variant="standard" fullWidth sx={{ maxWidth: { md: 400 } }}>
                     <TextField
                         onChange={searchCountry}
+                        onKeyUp={handleEnter}
                         placeholder="Search for a country..."
                         size="medium"
                         margin="dense"
