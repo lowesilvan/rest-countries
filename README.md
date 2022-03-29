@@ -21,7 +21,7 @@ Users should be able to:
 ### Screenshot
 
 ![Light Mode](./public/light_screen.png)
-
+<br>
 
 ![Dark Mode](./public/dark_screen.png)
 
