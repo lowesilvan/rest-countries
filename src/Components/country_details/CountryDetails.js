@@ -13,7 +13,7 @@ const CountryDetails = (props) => {
             <Container maxWidth="lg" sx={{ paddingTop: '80px'}}>
                 <Grid container spacing={6}>
                     <Grid item xs={12}>
-                        <Link to="/home">
+                        <Link to="/">
                             <Button
                                 variant="conatined"
                                 color="inherit"
