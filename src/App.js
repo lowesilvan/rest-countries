@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './index.css';
 import Navbar from "./Components/Navbar/Navbar";
 import Home from "./Components/Home/Home";
@@ -83,11 +83,13 @@ function App() {
                     searchTerm={searchTerm}
                     filterRegion={filterByRegion}
                     regionTerm={filterRegion}
-                    Enter={handleEnter}
-                  />} 
+                    Enter={handleEnter}/>} 
                 />
                 <Route path="/countries/:slug" element={<CountryDetails />} Country={country}/>
                 <Route path="*" element={<NotFound />} />
+                <Route exact path="/rest-countries"
+                  element={<Navigate to="/" replace/>}
+                />
               </Routes>
             </Router>
             </div>
