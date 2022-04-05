@@ -35,7 +35,7 @@ const CountryList = (props) => {
                     return null
 
                 }).map((country) => {
-                    const { numericCode, name, population, region, capital, flag} = country;
+                    const { numericCode, name, population, region, capital, flag, alpha3Code} = country;
 
                     return (
                         <Grid item key={numericCode} xs={12} sm={6} md={4} lg={3} xl={2}>
