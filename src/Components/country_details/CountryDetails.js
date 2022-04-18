@@ -6,10 +6,8 @@ import { Link } from 'react-router-dom'
 
 const CountryDetails = (props) => {
     const { slug } = useParams()
-    console.log({slug})
-    const { data: country, isPending, error } = FetchApi(`https://restcountries.com/v2/alpha/${slug}`);
+    const { data: country, isPending, error } = FetchApi(`https://restcountries.com/v2/name/${slug}`);
 
-    console.log({country})
     return (
         <>
             <Container maxWidth="lg" sx={{ paddingTop: '80px'}}>
@@ -37,33 +35,39 @@ const CountryDetails = (props) => {
                     {isPending && <Typography align="center" variant="h4" component="h3" color="inherit" sx={{ margin: '100px auto' }}>Loading...</Typography>}
                     {error && <Typography align="center" variant="h4" component="h3" color="inherit" sx={{ marginTop: '100px' }}>{error}</Typography>}
                     { country && <Grid component="main" xs={12} item>
-                        
-                                <Card key={country[0].alpha3Code} sx={{ display: 'flex', flexDirection: {xs: 'column', lg: 'row'}, height: 'auto'}} spacing={{xs: 5, lg: 2}}>
+                        {country.map((c) => {
+                            const { flag, name,
+                                nativeName, population, region,
+                                subregion, capital, topLevelDomain,
+                                currencies, languages, borders, alpha3Code } = c
+                            
+                            return (
+                                <Card key={alpha3Code} sx={{ display: 'flex', flexDirection: {xs: 'column', lg: 'row'}, height: 'auto'}} spacing={{xs: 5, lg: 2}}>
                                         <CardMedia 
                                             component="img"
                                             sx={{ margin: 0, maxInlineSize: '100%', blockSize: 'auto', width: 500}}
-                                            image={country[0].flag}
-                                            alt={country[0].name}
+                                            image={flag}
+                                            alt={name}
                                         />
                                         <CardContent>
                                         <Box sx={{ display: 'flex', flexDirection: { xs: 'column', lg: 'row' }, ml: {lg: 7} }} spacing={3}>
                                                 <CardContent spacing={3} sx={{ml: 0}}>
-                                                    <Typography gutterBottom variant="h3" component="h2" sx={{fontSize: {xs: '32px'}, fontWeight: 700}}>{country[0].name}</Typography>
-                                                    <Typography variant="paragraph" component="div"><strong>Native Name:  </strong>{country[0].nativeName}</Typography>
-                                                    <Typography variant="paragraph" component="div"><strong>Population:  </strong>{new Intl.NumberFormat().format(country[0].population)}</Typography>
-                                                    <Typography variant="paragraph" component="div"><strong>Region:  </strong>{country[0].region}</Typography>
-                                                    <Typography variant="paragraph" component="div"><strong>Sub Region:  </strong>{country[0].subregion}</Typography>
-                                                    {country[0].capital && <Typography variant="paragraph" component="div"><strong>Capital:  </strong>{country[0].capital}</Typography>}
-                                                    {!country[0].capital && <Typography variant="paragraph" component="div"><strong>Capital:  </strong>None</Typography>}
+                                                    <Typography gutterBottom variant="h3" component="h2" sx={{fontSize: {xs: '32px'}, fontWeight: 700}}>{name}</Typography>
+                                                    <Typography variant="paragraph" component="div"><strong>Native Name:  </strong>{nativeName}</Typography>
+                                                    <Typography variant="paragraph" component="div"><strong>Population:  </strong>{new Intl.NumberFormat().format(population)}</Typography>
+                                                    <Typography variant="paragraph" component="div"><strong>Region:  </strong>{region}</Typography>
+                                                    <Typography variant="paragraph" component="div"><strong>Sub Region:  </strong>{subregion}</Typography>
+                                                    {capital && <Typography variant="paragraph" component="div"><strong>Capital:  </strong>{capital}</Typography>}
+                                                    {!capital && <Typography variant="paragraph" component="div"><strong>Capital:  </strong>None</Typography>}
                                                 </CardContent>
                                             <CardContent sx={{ margin: 'auto', ml: 0}}>
-                                                    <Typography variant="paragraph" component="div"><strong>Top Level Domain:  </strong>{country[0].topLevelDomain} </Typography>
-                                                    <Typography variant="paragraph" component="div"><strong>Currencies:  </strong>{country[0].currencies.map((m, key) => {
+                                                    <Typography variant="paragraph" component="div"><strong>Top Level Domain:  </strong>{topLevelDomain} </Typography>
+                                                    <Typography variant="paragraph" component="div"><strong>Currencies:  </strong>{currencies.map((m, key) => {
                                                             return (
                                                                 <span key={key}> {m.name}</span>
                                                             )
                                                         })}</Typography>
-                                                    <Typography variant="paragraph" component="div"><strong>Languages:  </strong>{country[0].languages.map((l, key) => {
+                                                    <Typography variant="paragraph" component="div"><strong>Languages:  </strong>{languages.map((l, key) => {
                                                             return (
                                                                 <span key={key}> {l.name}</span>
                                                             )
@@ -72,7 +76,7 @@ const CountryDetails = (props) => {
                                             </Box>
                                             <CardContent sx={{ marginTop: { xs: 'auto' }, display: {xs: 'flex'}, ml: 'auto', alignItems: 'center'}}>
                                             <Typography variant="Paragraph" component="div" sx={{ flexDirection: { xs: 'column', lg: 'row' }, ml: {lg: 7}  }}><strong>Border Countries:  </strong>
-                                                    {country[0].borders && country[0].borders.map((b, key) => {
+                                                    {borders && borders.map((b, key) => {
                                                         const smallBorder = b.toLowerCase()
                                                             return (
                                                                 <span style={{ margin: 'auto' }}>
@@ -82,11 +86,13 @@ const CountryDetails = (props) => {
                                                                 </span>
                                                             )
                                                     })}
-                                                    {!country[0].borders && <span> None</span>}
+                                                    {!borders && <span> None</span>}
                                                 </Typography>
                                             </CardContent>
                                         </CardContent>
                                 </Card>
+                            )
+                        })}
                     </Grid>}
                 </Grid>
             </Container>  
