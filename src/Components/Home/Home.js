@@ -5,16 +5,22 @@ import { Typography } from '@mui/material';
 import Filter from '../Filter/Filter';
 import LoadingSpin from "react-loading-spin";
 
-const Home = ({Country, error, Pend, searchItem, searchTerm, filterRegion, regionTerm, Enter}) => {
-    // handle logic for filterr here instead of in App.js;
-    // have a state for search term and filter region
-    // Country list you only have to display data
+const Home = (props) => {
+    const country = props.Country;
+    const error = props.error;
+    const isPending = props.Pend;
+    const searchCountry = props.searchItem;
+    const searchTerm = props.searchTerm;
+    const filterRegion = props.filterRegion;
+    const regionTerm = props.regionTerm;
+    const handleEnter = props.Enter
+
     return (
         <main>
             <Container sx={{ py: 0 }} maxWidth="xl">
-                <Filter Country={Country} searchCountry={searchItem} filterRegion={filterRegion} regionTerm={regionTerm} Enter={Enter}/>
+                <Filter Country={country} searchCountry={searchCountry} filterRegion={filterRegion} regionTerm={regionTerm} Enter={handleEnter}/>
                 {error && <Typography align="center" variant="h4" component="h3" color="inherit" sx={{ marginTop: '100px' }}>{error}</Typography>}
-                {Pend && 
+                {isPending && 
                     <Typography align="center" variant="h4" component="h3" color="inherit" sx={{ marginTop: '100px' }}><LoadingSpin 
                         duration="2s"
                         width="10px"
@@ -26,7 +32,7 @@ const Home = ({Country, error, Pend, searchItem, searchTerm, filterRegion, regio
                         numberOfRotationsInAnimation={3}
                     />
                     </Typography>}
-                {Country && <CountryList Country={Country} searchTerm={searchTerm} regionTerm={regionTerm}/>}
+                {country && <CountryList Country={country} searchTerm={searchTerm} regionTerm={regionTerm}/>}
             </Container>
         </main>
     )
